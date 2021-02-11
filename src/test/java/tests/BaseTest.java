@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
 import pages.ProductsPage;
 import pages.YourCartPage;
-
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -30,7 +29,7 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        if (driver != null) {
+        if(driver != null) {
             driver.quit();
         }
     }

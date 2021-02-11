@@ -19,4 +19,3 @@ public class ProductsTest extends BaseTest {
         productsPage.buyProduct("Sauce Labs Fleece Jacket");
     }
 }
-
