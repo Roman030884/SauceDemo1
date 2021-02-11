@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class LoginTest extends BaseTest {
+
     @Test
     public void wrongPassword() {
         loginPage.open();
@@ -22,4 +23,5 @@ public class LoginTest extends BaseTest {
                 "Epic sadface: Username is required",
                 "Error message is not correct");
     }
+
 }

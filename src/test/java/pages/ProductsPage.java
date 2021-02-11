@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
+
     public static final String ADD_TO_CARD = "//*[text()='%s']/ancestor::*[contains(@class,'inventory_item')]//button";
 
     public ProductsPage(WebDriver driver) {
@@ -13,4 +14,5 @@ public class ProductsPage extends BasePage {
     public void buyProduct(String productName) {
         driver.findElement(By.xpath(String.format(ADD_TO_CARD, productName))).click();
     }
+
 }
