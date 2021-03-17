@@ -4,14 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutYourInformationPage extends BasePage {
-    public static final By FIRST_NAME_INPUT = By.id("first-name");
-    public static final By LAST_NAME_INPUT = By.id("last-name");
-    public static final By ZIP_POSTAL_CODE_INPUT = By.id("postal-code");
-    public static final By CANCEL_BUTTON = By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[2]/a");
-    public static final By CONTINUE_BUTTON = By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[2]/input");
+    private static final By FIRST_NAME_INPUT = By.id("first-name");
+    private static final By LAST_NAME_INPUT = By.id("last-name");
+    private static final By ZIP_POSTAL_CODE_INPUT = By.id("postal-code");
+    private static final By CANCEL_BUTTON = By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[2]/a");
+    private static final By CONTINUE_BUTTON = By.xpath("//*[@id=\"checkout_info_container\"]/div/form/div[2]/input");
     public static final By CHECKOUT_OVERVIEW_PAGE_NAME_ = By.className("subheader");
-    public static final By YOUR_CART_PAGE_NAME_ = By.className("subheader");
-    public static final By ERROR_MESSAGE = By.xpath("//*[@id=\"checkout_info_container\"]/div/form/h3");
+    private static final By ERROR_MESSAGE = By.xpath("//*[@id=\"checkout_info_container\"]/div/form/h3");
 
 
     public CheckoutYourInformationPage(WebDriver driver) {
@@ -41,6 +40,7 @@ public class CheckoutYourInformationPage extends BasePage {
     }
 
     public String elementCheckoutOverview() {
+
         return driver.findElement(CHECKOUT_OVERVIEW_PAGE_NAME_).getText();
     }
 }

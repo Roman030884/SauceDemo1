@@ -1,22 +1,23 @@
 package tests;
 
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class ProductsTest extends BaseTest {
-    @Test
-    public void productsShouldBeAvailableInCart() {
+
+    @BeforeMethod
+    public void setUpProductsTest(){
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.buyProduct("Sauce Labs Bolt T-Shirt");
-        productsPage.buyProduct("Sauce Labs Fleece Jacket");
+
     }
 
-    @Test
-    public void test() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+    @Test (retryAnalyzer = Retry.class)
+    public void productsShouldBeAvailableInCart() {
         productsPage.buyProduct("Sauce Labs Bolt T-Shirt");
         productsPage.buyProduct("Sauce Labs Fleece Jacket");
+
     }
+
 }
 

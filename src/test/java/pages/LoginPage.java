@@ -4,17 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
-    public static final By LOGIN_INPUT = By.id("user-name");
-    public static final By PASSWORD_INPUT = By.id("password");
-    public static final By LOGIN_BUTTON = By.id("login-button");
-    public static final By ERROR_MESSAGE = By.cssSelector("[data-test=error]");
+    private static final By LOGIN_INPUT = By.id("user-name");
+    private static final By PASSWORD_INPUT = By.id("password");
+    private static final By LOGIN_BUTTON = By.id("login-button");
+    private static final By ERROR_MESSAGE = By.cssSelector("[data-test=error]");
+    private static final String URL_OPEN_LOGIN_PAGE = "https://www.saucedemo.com";
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void open() {
-        driver.get("https://www.saucedemo.com/index.html");
+        driver.get(URL_OPEN_LOGIN_PAGE);
     }
 
     public void login(String userName, String password) {

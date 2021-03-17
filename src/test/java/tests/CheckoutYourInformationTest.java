@@ -1,71 +1,81 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static pages.CheckoutYourInformationPage.CHECKOUT_OVERVIEW_PAGE_NAME_;
-import static pages.CheckoutYourInformationPage.YOUR_CART_PAGE_NAME_;
 
 public class CheckoutYourInformationTest extends BaseTest {
-    @Test
-    public void checkGoInCheckoutOverviewPage() {
+
+    @BeforeMethod
+    public void setUpCheckoutYourInformationTest(){
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
         checkoutYourInformationPage.openCheckoutYourInformationPage();
-        checkoutYourInformationPage.inputData("Roman", "Ivanov", "789");
-        String namePage = driver.findElement(CHECKOUT_OVERVIEW_PAGE_NAME_).getText();
-        Assert.assertEquals("Checkout: Overview", namePage, "The transition to a new " +
-                "page (Checkout: Overview) was not completed");
+
     }
 
-    @Test
+    @Test (retryAnalyzer = Retry.class)
+    public void checkGoInCheckoutOverviewPage() {
+        checkoutYourInformationPage.inputData("Roman", "Ivanov", "789");
+        String namePage = driver.findElement(CHECKOUT_OVERVIEW_PAGE_NAME_).getText();
+        Assert.assertEquals(namePage,"Checkout: Overview",
+                "The transition to a new page (Checkout: Overview) was not completed");
+    }
+
+    @Test (retryAnalyzer = Retry.class)
     public void checkReturnYourCartPage() {
-        checkoutYourInformationPage.openCheckoutYourInformationPage();
         checkoutYourInformationPage.returnYourCartPage();
-        Assert.assertEquals("Your Cart",checkoutYourInformationPage.elementCheckoutOverview(),
+        Assert.assertEquals(checkoutYourInformationPage.elementCheckoutOverview(),
+                "Your Cart",
                 "The transition to a new page (Your Cart) was not completed");
     }
 
-    @Test
+    @Test (retryAnalyzer = Retry.class)
     public void checkFormFieldFirstNameEmpty() {
-        checkoutYourInformationPage.openCheckoutYourInformationPage();
         checkoutYourInformationPage.inputData("", "Ivanov", "789");
         Assert.assertEquals("Error: First Name is required", checkoutYourInformationPage.getErrorMessage(),
                 "The error notification doesn't work");
     }
 
-    @Test
+    @Test (retryAnalyzer = Retry.class)
     public void checkFormFieldLastNameEmpty() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
         checkoutYourInformationPage.openCheckoutYourInformationPage();
         checkoutYourInformationPage.inputData("Roman", "", "789");
-        Assert.assertEquals("Error: Last Name is required", checkoutYourInformationPage.getErrorMessage(),
+        Assert.assertEquals(checkoutYourInformationPage.getErrorMessage(),
+                "Error: Last Name is required",
                 "The error notification doesn't work");
     }
 
-    @Test
+    @Test (retryAnalyzer = Retry.class)
     public void checkFormFieldPostalCodeEmpty() {
-        checkoutYourInformationPage.openCheckoutYourInformationPage();
         checkoutYourInformationPage.inputData("Roman", "Ivanov", "");
-        Assert.assertEquals("Error: Postal Code is required", checkoutYourInformationPage.getErrorMessage(),
+        Assert.assertEquals(checkoutYourInformationPage.getErrorMessage(),
+                "Error: Postal Code is required" ,
                 "The error notification doesn't work");
     }
-    @Test
+    @Test (retryAnalyzer = Retry.class)
     public void checkFormFieldPostalCodeSpace() {
-        checkoutYourInformationPage.openCheckoutYourInformationPage();
         checkoutYourInformationPage.inputData("Roman", "Ivanov", " ");
-        Assert.assertEquals("Checkout: Overview", checkoutYourInformationPage.elementCheckoutOverview(),
+        Assert.assertEquals(checkoutYourInformationPage.elementCheckoutOverview(),
+                "Checkout: Overview" ,
                 "The error notification work");
     }
-    @Test
+    @Test (retryAnalyzer = Retry.class)
     public void checkFormFieldFirstNameSpace() {
-        checkoutYourInformationPage.openCheckoutYourInformationPage();
         checkoutYourInformationPage.inputData(" ", "Ivanov", "789");
-        Assert.assertEquals("Checkout: Overview", checkoutYourInformationPage.elementCheckoutOverview(),
+        Assert.assertEquals(checkoutYourInformationPage.elementCheckoutOverview(),
+                "Checkout: Overview" ,
                 "The error notification work");
     }
-    @Test
-    public void checkFormFieldLasttNameSpace() {
-        checkoutYourInformationPage.openCheckoutYourInformationPage();
+    @Test (retryAnalyzer = Retry.class)
+    public void checkFormFieldLastNameSpace() {
         checkoutYourInformationPage.inputData("Roman", " ", "789");
-        Assert.assertEquals("Checkout: Overview", checkoutYourInformationPage.elementCheckoutOverview(),
+        Assert.assertEquals(checkoutYourInformationPage.elementCheckoutOverview(),
+                "Checkout: Overview" ,
                 "The error notification work");
     }
 }
