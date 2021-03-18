@@ -5,10 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 public class YourCartPage extends BasePage {
 
-    public static final By REMOVE_BUTTON = By.xpath("//button[text()='REMOVE']");
-    public static final By CONTINUE_SHOPPING_BUTTON = By.xpath("//*[@id=\"cart_contents_container\"]/div/div[2]/a[1]");
-    public static final By CHECKOUT_SHOPPING_BUTTON = By.xpath("//*[@id=\"cart_contents_container\"]/div/div[2]/a[2]");
-    public static final By ICON_CART = By.tagName("path");
+    private static final By REMOVE_BUTTON = By.xpath("//button[text()='REMOVE']");
+    private static final By CONTINUE_SHOPPING_BUTTON = By.xpath("//*[@id=\"cart_contents_container\"]/div/div[2]/a[1]");
+    private static final By CHECKOUT_SHOPPING_BUTTON = By.xpath("//*[@id=\"cart_contents_container\"]/div/div[2]/a[2]");
+    private static final By ICON_CART = By.tagName("path");
+    private static final String URL_OPEN_YOUR_CART_PAGE ="https://www.saucedemo.com/cart.html";
 
     public YourCartPage(WebDriver driver) {
 
@@ -32,7 +33,7 @@ public class YourCartPage extends BasePage {
 
     public void openPageYourCart() {
 
-        driver.get("https://www.saucedemo.com/cart.html");
+        driver.get(URL_OPEN_YOUR_CART_PAGE);
     }
 
     public void returnInPageProducts() {
